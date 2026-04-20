@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
+            table {
+                border-collapse: collapse;
+            }
+
+            table, td {
+                border : 1px solid #000000;
+            }
+
+            td {
+                width: 50px;
+                height: 50px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <table>
+            <tbody>
+                <!-- 1줄 --> 
+                <tr>
+                    <td>1</td>
+                    <td rowspan="3"> 2</td>
+                    <td>3</td>
+                    <td rowspan="7">4</td>
+                    <td>5</td>
+                    <td>6</td>
+                    <td>7</td>
+                </tr>
+                <!-- 2줄 --> 
+                <tr>
+                    <td>1</td>
+                    <td> 2</td>
+                    <td colspan="3">3</td>
+
+                </tr>
+                <!-- 3줄 --> 
+                <tr> 
+                    <td>1</td>
+                    <td> 2</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>5</td>
+                </tr>
+                <!-- 4줄 --> 
+                <tr>
+                    <td colspan="7">1</td>
+
+                </tr>
+                <!-- 5줄 --> 
+                <tr>
+                    <td>1</td>
+                    <td> 2</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td rowspan="3">5</td>
+                    <td>6</td>
+                </tr>
+                <!-- 6줄 --> 
+                <tr>
+                    <td colspan="3">1</td>
+                    <td> 2</td>
+                    <td>3</td>
+                </tr>
+                <!-- 7줄 --> 
+                <tr>
+                    <td>1</td>
+                    <td> 2</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>5</td>
+                </tr>
+                
+
+            </tbody>
+
+
+        </table>
+    </body>
+</html>
