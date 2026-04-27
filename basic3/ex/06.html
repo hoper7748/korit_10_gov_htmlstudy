@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        console.log("5" + 3);       // 예측: 8 // 문자열 5와 3을 더한 것이기 때문에 53출력
+        console.log("5" - 3);       // 예측: 2 // 문자열은 음수 연산이 들어올 수 없기 때문에 캐스팅되어 2 출력
+        console.log(true + 1);      // 예측: 2 // true == 1
+        console.log(false + "개");  // 예측: 0개 // false에 개를 추가한 것이기 때문에 false개
+        console.log(null + 1);      // 예측: 1  // null == 0으로 취급되기 때문에 1 출력
+    </script>
+</body>
+</html>

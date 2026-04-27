@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .parent{
+            /* position: relative; */
+            width: 400px;
+            height: 300px;
+            border: 2px solid black;
+        }
+        .child{
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+        }
+    </style>
+    <!-- 왜 position relative가 없으면 child가 부모에 종속되지 않고 벗어나서 그렇다   -->
+</head>
+<body>
+    <div class="parent">
+        <div class="child">여기!</div>
+    </div>
+</body>
+</html>

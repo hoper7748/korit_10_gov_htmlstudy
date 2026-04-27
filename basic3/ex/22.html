@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // function myMap(params, func){
+        //     let result = [];
+        //     for (let i = 0; i < params.length; i++) {
+        //         result.push(func(params[i], i, params));
+        //     }
+            
+        //     return result;
+        // }
+
+        // console.log(myMap([1, 2, 3, 4], (x) => x * 2));   // [2, 4, 6, 8]
+        // console.log(myMap([1, 2, 3, 4], (x) => x ** 2));  // [1, 4, 9, 16]
+        function calc(run, ...nums){
+            return run(nums);
+        }
+
+        function addition(nums){
+            return nums === 0 ? 0 : nums + addition(nums - 1);
+        }
+
+        function factorial(num){
+            return num === 0 || num === 1 ? 1: num * factorial(num - 1);
+        }
+
+        const result1 = calc(addition, 10);
+        const result2 = calc(factorial, 10);
+        // console.log(result1, result2);
+        const arr = [1,2,3,4];
+        const result = arr.splice(2, 2, 5);
+        console.log(arr);
+        console.log(result);
+    </script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+        .box    {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            border: 1px solid #000 ;
+            animation-name: b;
+            animation-duration: 3s;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+            animation-direction: reverse;
+            transform: linear
+        }
+        
+        .p-box{
+            position: relative;
+            box-sizing: border-box;
+            border: 1px solid #222;
+            width: 500px;
+            height: 500px;
+        }
+        @keyframes b{
+            0%{
+                top:0%;
+                left: 0%;
+            }
+            25%{
+                translate: translateX(-100%);
+                top:100%;
+                left: 0%;
+            }
+            50%{
+                translate: translate(-100%,-100%);
+                top:100%;
+                left: 100%;
+            }75%{
+                top:0%;
+                left: 100%;
+            }            
+            
+            100%{
+                top:0;
+                left: 0;
+            }
+        }  
+    </style>
+</head>
+<body>
+    <div class="p-box">
+        <div class="box">
+
+        </div>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            box-sizing:  border-box;
+            /* margin: auto;
+            padding: auto; */
+        }
+        .header{
+            position: fixed;
+            top: 0;
+            left: 0;
+            width : 150%;
+            background-color: #1b2a4a;
+            color :white;
+            padding: 10px 10px;
+            z-index:  100;
+        }
+        body{
+            padding-top :40px;
+        }
+        main{
+            max-width: 800px;
+            margin: auto;
+        }
+        section{
+            border-bottom: 1px solid #eee;
+            padding-bottom:  20px;
+            margin:  20px;
+        }
+        th, td{
+            border:ridge;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <header class="header">(이름 + 연락처)</header>
+        <main>
+            <section>
+                <h2>자기소개</h2>
+                <p>나는</p>
+                <p>비빔</p>
+                <p>인간입니다.</p>
+            </section>
+            <section>
+                기술스택
+                <ul>
+                    <li>Java</li>
+                    <li>Spring</li>
+                    <li>MySql</li>
+                    <li>HTML/CSS</li>
+                </ul>
+            </section>
+            <section>경력사항
+                <table>
+                    <thead>
+                        <tr>
+                            <th>회사명</th>
+                            <th>기간</th>
+                            <th>담당업무</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>null</td>
+                            <td>null</td>
+                            <td>null</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+        <footer>
+            <a href="https://github.com">아아.. 이건...</a>
+            <a href="aa@gmail.com">이메일이란 것이다..</a>
+        </footer>
+    </div>
+</body>
+</html>

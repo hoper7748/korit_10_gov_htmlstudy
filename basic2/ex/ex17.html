@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box-a {
+            width: 200px;
+            padding: 20px;
+            border: 5px solid black;
+            box-sizing: content-box;  /* 기본값 */
+        }
+
+        .box-b {
+            width: 200px;
+            padding: 20px;
+            border: 5px solid black;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        -box-a의 실제 보이는 너비: 250px 
+        - box-b의 실제 보이는 너비: 200px
+        b -> 우리가 원하는 것은 200px의 박스지만, a 박스는 200px의 범위 +@로 만들어지고 b는 200px에 맞춰서 공간이 배정되어서
+    -->
+
+    <div class="box-a">
+    </div>
+    <div class="box-b"></div>
+</body>
+</html>

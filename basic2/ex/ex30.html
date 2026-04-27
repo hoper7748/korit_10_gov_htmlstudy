@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form{
+            width: 400px;
+            margin: auto;
+            padding: 30px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+        }
+        body{
+            height: 100vh;
+            margin: 0;
+            background-color:  #f0f0f0;
+        }
+        .login-box{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            padding: 40px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+        }
+        input{
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+        input[type=checkbox]{
+            width:3%;
+        }
+        a{
+
+        }
+        button{
+            width: 100%;
+            padding: 14px;
+            background-color: #065a82;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size:  16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <h1>Login</h1>
+        <div>
+            <label for="id">ID</label>
+            <input type="text" id="id" name="id" placeholder="아이디를 입력하세요">
+        </div>
+        <div>
+            <label for="password">PW</label>
+            <input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요">
+        </div>
+        <div>
+            <label for="rememberid">아이디 기억하기</label><input type="checkbox" id="rememberid" >
+        </div>
+        <div>
+            <p>계정이 없으신가요?　 <a href="">회원가입</a></p>
+            <button>로그인</button>
+        </div>
+    </form>
+
+
+</body>
+</html>
