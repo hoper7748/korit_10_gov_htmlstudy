@@ -25,6 +25,7 @@
             justify-content: center;
             align-items: center;
             box-sizing: border-box;
+            margin-bottom: 20px;
             /* border: 1px solid #dbdbdb; */
             box-shadow: 0 0 5px #00000044;
             width: 500px;
@@ -101,6 +102,19 @@
                 background-color: #003e65;
             }
         }
+        .user-table{
+            box-sizing: border-box;
+            border: 1px solid #dbdbdb;
+            border-right: 4px;
+            width: 500px;
+            overflow: hidden;
+            & th, & td{
+                box-sizing: border-box;
+                border: 1px solid #dbdbdb;
+                padding: 5px 10px;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -116,6 +130,23 @@
             </div>
             <button class="register-button">사용자 정보 등록</button>
         </div>
+            <div class="card">
+                <table class="user-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>사용자이름</th>
+                            <th>비밀번호</th>
+                            <th>삭제</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <!-- <td></td>0 -->
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
     </div>
 
 
@@ -152,20 +183,46 @@
             let newUser ={
                 id: getNewId(),
             }
+            console.log({inputs});
+            console.log("  ");
             Array.from(inputs).forEach(element => {
+                console.log(element);
+                
                 const {name, value} = element;
                 newUser = {
                     ...newUser,
-                    name: value,
+                    [name]: value,
                     // [element.password]: 
-                } ;
+                };
+
             });
             userList = [
                 ...userList, 
                 newUser,
-        ];
-        console.log(userList);
+            ];
+            tablerender();
         }
+
+        function handleDeleteOnClick(id){
+            userList= userList.filter(user => user.id !== id);
+            tablerender();
+        }
+
+        function tablerender(){
+            const tbody = document.querySelector(".user-table > tbody");
+            tbody.innerHTML = userList.map(user => `
+            <tr>
+                <td>${user.id}</td>
+                <td>${user.username}</td>
+                <td>${user.password}</td>
+                <td><button onclick = "handleDeleteOnClick(${user.id})">삭제</button></td>
+            </tr>`).join("");
+        }
+
+        // console.log(userList);
+        // const tableList = document.querySelector(".user-table-body");
+        // tableList.innerHTML = userList.map(name => `<tr><td>${name.id}</td><td>${name.username}</td><td>${name.password}</td></tr>`).join("");
+
     </script>
 </body>
 </html>

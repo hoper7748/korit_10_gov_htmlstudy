@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html, body{
+            margin : 0;
+            height: 100vh; 
+        }
+        .container{
+            display:flex;
+            /* flex-direction: column; */
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin: 0 auto;
+            padding: 100px, 0px;
+            width:1200px;
+            height: 100%;
+            overflow: auto
+        }
+
+        .card   {
+            /* display: flex; */
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+            /* border: 1px solid #dbdbdb; */
+            box-shadow: 0 0 5px #00000044;
+            width: 500px;
+            padding: 10px;
+        }
+
+        .input-box{
+            position: relative;
+            /* display:flex;
+            flex-direction: column; */
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 1px solid #dbdbdb;
+            border-radius: 4px;
+            padding: 5px 10px;
+            width: 360px;
+            height: 50px;
+            overflow: hidden;
+
+            & > label{
+                transition: all 0.3s ease-in-out;
+                transform: translateY(-50%);
+                position: absolute;
+                top:50%;
+                left:10px;
+                background-color: transparent;
+                font-size: 16px;
+                color:#444;
+
+            }
+
+            & > input {
+                transition: all 0.3s ease-in-out;
+                position: relative;
+                z-index: 10;
+                outline: none;
+                border: none;
+                width: 100%;
+                height: 100%;
+                background-color: #00000000;
+            }
+        }
+        
+        .input-is-not-empty{
+            & > label{
+                font-size: 12px;
+                top: 25%;
+
+            }
+
+            & > input {
+                top: 30%;
+                height: 80%;
+            }
+        }
+        
+        .register-button{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+            border: 1px solid #dbdbdb;
+            width: 100%;
+            height: 40px;
+            background-color: #006caf;
+            color: #fafafa;
+            cursor: pointer;
+            
+            &:hover{
+                background-color: #005489;
+            }
+
+            &:active{
+                background-color: #003e65;
+            }
+        }
+        .option-items-top{
+            display:flex;
+            justify-content: space-between;
+            gap: 30px;
+            width:  100%;
+
+        }
+
+        .search-input{
+            box-sizing: border-box;
+            padding: 0 10px;
+            width: 300px;
+        }
+
+        .df-row{
+            display:flex;
+        }
+
+        .btn{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+            border: 1px solid #dbdbdb;
+            border-radius: 4px;
+            /* width: 100%; */
+            /* height: 40px; */
+            padding: 8px 11px;
+            background-color: #555555;
+            color: #fafafa;
+            cursor: pointer;
+
+            &:hover{
+                background-color: #6c6c6c;
+            }
+            &:active{
+                background-color: #444;
+            }
+        }
+        
+        .btn.edit{
+            background-color: orange;
+            &:hover{
+                background-color: rgb(255, 207, 118);
+            }
+            &:active{
+                background-color: rgb(170, 111, 0);
+            }
+        }
+        .btn.delete{
+            background-color: darkred;
+            &:hover{
+                background-color: rgb(199, 24, 24);
+            }
+            &:active{
+                background-color: rgb(80, 0, 0);
+            }
+        }
+
+        .user-table{
+            box-sizing: border-box;
+            border: 1px solid #dbdbdb;
+            border-right: 4px;
+            width: 500px;
+            overflow: hidden;
+            & th, & td{
+                box-sizing: border-box;
+                border: 1px solid #dbdbdb;
+                padding: 5px 10px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="input-box input-is-not-empty">
+                <input type="text" id="un" name="username" >
+                <label for="un">사용자 이름</label>
+            </div>
+            <div class="input-box">
+                <input type="password" id="pw" name="password" >
+                <label for="pw">비밀번호</label>
+            </div>
+            <button class="register-button">사용자 정보 등록</button>
+        </div>
+
+        <div> 
+            <div class="card">
+                <div class="option-items-top">
+                    <div class="df-row">
+                        <input type="text" class="search-input">
+                        <button class="btn">검색</button>
+                    </div>
+                    <div class="df-row">
+                        <button class="btn edit">수정</button>
+                        <button class="btn delete">삭제</button>
+                    </div>
+                </div>
+            </div> 
+            <div class="card">
+                <table class="user-table">
+                    <thead>
+                        <tr>
+                            <th><input type="checkbox" id="allcheck" ></th> <!--이걸 누를 경우 -->
+                            <th>ID</th>
+                            <th>사용자이름</th>
+                            <th>비밀번호</th>
+                            <th>삭제</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <!-- <td></td>0 -->
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+          
+    </div>
+
+
+    <script>
+        let tableContollerMode = {
+            none: "NONE",
+            modify: "MODIFY",
+            delete: "DELETE",
+        }
+
+        let currentTableControlMode = tableContollerMode.none;
+
+        let userList = [];
+        modeButtonGroupRender();
+        tablerender();
+
+
+        function deleteAllById(){
+            userList = userlist.filter(user => !user.checked );
+        }
+
+        function handleModeButttonClick(event){
+            const checkBoxReset = () => {
+                userList = userList.map(user => ({
+                    ...user, checked : false,
+                }));
+            }
+            switch(e.target.value){
+                case "edit":allCheckcurrentTableControlMode = currentTableControlMode.modify;
+                break;
+                case "delete":allCheckcurrentTableControlMode = tableContollerMode.delete;
+                break;
+                case "ok":
+                    // allCheckcurrentTableControlMode=tableContollerMode.none;
+                    if(currentTableControlMode === tableContollerMode.delete){
+                        deleteAllById()
+                    }
+                    if (currentTableControlMode === tableContollerMode.modify){
+
+                    }
+                checkBoxReset();
+                // checkboxAll.disabled = false;
+                // checkboxAll.dispatchEvent(new Event("change"));
+                break;
+                case "cancel":allCheckcurrentTableControlMode = tableContollerMode.none;
+                checkBoxReset();
+                // checkboxAll.disabled = false;
+                // checkboxAll.dispatchEvent(new Event("change"));
+                break;
+            }
+            modeButtonGroupRender();
+            tableRender();
+        }
+
+        function autoIncrement(){
+            let currentId = 0;
+
+            return function() {
+                currentId ++;
+                return currentId;
+            }
+        }
+
+        const getNewId = autoIncrement();
+
+        const inputBoxs =  document.querySelectorAll(".input-box");
+        // console.log(inputBoxs);
+        for(let inputbox of inputBoxs){
+            const inputelement = inputbox.querySelector("input");
+            inputelement.onfocus = (event) => {
+                inputbox.classList.add("input-is-not-empty");
+            };
+
+            inputelement.onblur = (event) => {
+                if(!event.target.value)
+                    inputbox.classList.remove("input-is-not-empty");
+            }
+        }
+        // const inputElements = document[0].querySelectorAll(".input-box > input");
+        const registerbutton = document.querySelector(".register-button");
+        registerbutton.onclick = () =>{
+            const inputs = Array.from(inputBoxs).map(inputbox => inputbox.querySelector("input"))
+            let newUser ={
+                id: getNewId(),
+            }
+
+            Array.from(inputs).forEach(element => {
+                // console.log(element);
+                
+                const {name, value} = element;
+                newUser = {
+                    ...newUser,
+                    [name]: value,
+                    // [element.password]: 
+                };
+
+            });
+            userList = [
+                ...userList, 
+                newUser,
+            ];
+            tablerender();
+        }
+
+        const allCheck = document.querySelector("#allcheck");
+        // console.log(allCheck);
+        allCheck.onchange = (e) => {
+            const checked = e.target.checked;
+            const rowChecks = document.querySelectorAll(".row-check");
+
+            rowChecks.forEach(chk => {
+                chk.checked = checked;
+            });
+        };
+        // 일반 태그들이 all check 될 경우 맨 위의 태그도 체크 되어야 한다
+        document.addEventListener("change", (event) => {
+            if(event.target.classList.contains("row-check")){
+                const all =document.querySelectorAll(".row-check");
+                const checked = document.querySelectorAll(".row-check:checked");
+
+                document.querySelector("#allcheck").checked = all.length === checked.length;
+            }
+        })
+
+
+        function handleDeleteOnClick(id){
+            userList= userList.filter(user => user.id !== id);
+            tablerender();
+        }
+        function handleCheckBoxOnChange(e){
+            const checkboxEl = e.target;
+            if(checkboxEl.id ==="all"){
+                userList=userList.map(user => ({
+                    ...user,
+                    checked: checkboxEl,checked,
+                }));
+            }else if( currentTableControlMode === tableContollerMode.delete){
+                userList = userList.map(user => {
+                    if(user.id ===parseInt(checkboxEl.id)){
+                        return {
+                            ...user,
+                            checked: checkboxEl.checked,
+                        }
+                    }
+                    return user;
+                });
+            }else if(currentTableControlMode === tableContollerMode.modify){
+                userList = userList.map(user => {
+                    if(user.id ===parseInt(checkboxEl.id)){
+                        return {
+                            ...user,
+                            checked: checkboxEl.checked,
+                        }
+                    }
+                    return {
+                        ...user,
+                        checked: false,
+                    };
+                });
+            }
+            tablerender();
+        }
+
+        function tablerender(){
+            const isDisable = currentTableControlMode =autoIncrement== tableContollerMode.delete;
+            const checkboxAll = document.querySelector("#all");
+            checkboxAll.disabled = isDisable || currentTableControlMode === tableContollerMode.modify;
+            checkboxAll.checked = userList.filter(user => user.checked).length === userList.length && userlist.length !== 0;
+            const tbody = document.querySelector(".user-table > tbody");
+            // const check = document.querySelector("#allcheck");
+            const rowChecks = document.querySelectorAll(".row-check");
+            // console.log(check.checked);
+            tbody.innerHTML = userList.map(user => `
+            <tr>
+                <th><input type="checkbox" class="row-check" id=${user.id} ${user.checked ? "checked": ""} ${isDisable? "disable" : ""}onchange="handleCheckBoxOnChange(event)"}></th>  
+                <td>${user.id}</td>
+                <td>${user.username}</td>
+                <td>${user.password}</td>
+                <td><button onclick = "handleDeleteOnClick(${user.id})">삭제</button></td>
+            </tr>`).join("");
+        }
+
+        // console.log(userList);
+        // const tableList = document.querySelector(".user-table-body");
+        // tableList.innerHTML = userList.map(name => `<tr><td>${name.id}</td><td>${name.username}</td><td>${name.password}</td></tr>`).join("");
+
+    </script>
+</body>
+</html>

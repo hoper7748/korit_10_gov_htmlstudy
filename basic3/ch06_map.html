@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>이름</th>
+            </tr>
+        </thead>
+        <tbody class="name-table-body">
+            
+        </tbody>
+    </table>
+
+
+
+    <script>
+        // map(mapping) -> 1대 1로 대응한다.
+        // [10, 20, 30] -> [100, 200, 300]
+        // ["AA", "BB", "CC"] -> ["aa", "bb", "cc"]
+        // [{name: "AA"}, {name: "BB"}, {name: "CC"}]
+        // ["AA", "BB", "CC"]
+
+        const arrayObject = {
+            arr: [],
+            map: (mapFx) => {
+                const newArray = [];
+                for(let array of arrayObject.arr){
+                    newArray.push(mapFx(array));
+                }
+                return newArray;
+            },
+            filter: (predicate ) =>{
+                const newArray = [];
+                for(let array of arrayObject.arr ){
+                    if(predicate(array)){
+                        newArray.push(array);
+                    }
+                }
+                return newArray;
+            }
+        }
+
+        const names= ["AA", "Bb","CC"];
+        console.log(names);
+        arrayObject.arr = names;    
+        // console.log(arrayObject.map(name => "김" + name));
+        console.log(arrayObject.map(name=> "김" + name).filter(name => name.includes("AA")));
+        // function map(){
+
+        // }
+
+         const box1 = {
+            miniBox:{
+                content: "미니박스1",
+
+            }
+        }
+
+        const box2 ={
+            minibox: {
+                content: "미니박스2",
+            }
+        }
+        const box3 ={
+            minibox: {
+                content: "미니박스3",
+            }
+        }
+
+        const boxList =[
+            box1, box2, box3,
+        ];
+
+        const miniBoxList = [box1.miniBox, box2.minibox, box3.miniBox];
+        const miniBoxList2 = [];
+        for(let box of boxList){
+            miniBoxList2.push(box.miniBox);
+        }  
+        const miniBoxList3 = boxList.map(box => box.miniBox);
+
+        const content = boxList.map(box => box);
+
+        console.log(content);
+
+        const name ="AAA";
+        const message = '{name}님 환영합니다.';
+        console.log(message);
+
+        const nameList = ["AAA", "BBB", "CCC"]
+        // ["<tr><td>AAA</td></tr>", "<tr><td>BBB</td></tr>", "<tr><td>CCC</td></tr>"];
+        console.log(nameList.map((name) => "<tr><td>"+name+"</td></tr>"));
+        const tableBody = document.querySelector(".name-table-body")
+        // innerHTML은 html 코드를 추가해줄 수 있는 기능을 함. 
+        tableBody.innerHTML = nameList.map(name => `<tr><td>${name}</td></tr>`).join("");
+        
+    </script>
+</body>
+</html>
